@@ -11,12 +11,13 @@ rankhospital <- function(state, outcome, num = "best") {
     if (!stateValid) stop('invalid state')
     if (!outcomeValid) stop('invalid outcome')
     
+    # validate input rank
     n <- ifelse(numValid & tolower(num) == 'best', 1, 
                 ifelse(!numValid, as.numeric(num), 0))
     # evaluate which column to use based on specified outcome
-    col <- ifelse(tolower(outcome) == 'heart attack', 13, 
-                  ifelse(tolower(outcome) == 'heart failure', 19, 
-                         ifelse(tolower(outcome) == 'pneumonia', 25, 0)))
+    col <- ifelse(tolower(outcome) == 'heart attack', 11, 
+                  ifelse(tolower(outcome) == 'heart failure', 17, 
+                         ifelse(tolower(outcome) == 'pneumonia', 23, 0)))
     # subset by state
     ds <- data[which(data$State == state),]
     # convert values to numeric
